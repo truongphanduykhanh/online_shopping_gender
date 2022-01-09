@@ -1,4 +1,4 @@
-# online_shopping_gender
+# Online Shopping Gender
 
 A project predicting the gender of online customers.
 
