@@ -171,7 +171,8 @@ class MLFramework:
         return accuracy
 
     def optuna_lgb(self, n_trials=100):
-        study = optuna.create_study(direction='maximize')
+        sampler = optuna.samplers.TPESampler(seed=0)
+        study = optuna.create_study(direction='maximize', sampler=sampler)
         study.optimize(
             lambda trial: MLFramework._objective_lgb(trial, self.train),
             n_trials=n_trials
@@ -302,7 +303,7 @@ def get_gain_table(y_true: list, y_pred: list, n_level: int = 10) -> pd.DataFram
     """
     label_levels = reversed(range(1, 1 + n_level))
     label_levels = ['Level' + str(x) for x in label_levels]
-    level = pd.qcut(y_pred, n_level, labels=label_levels, duplicates='raise')
+    level = pd.qcut(y_pred, n_level, labels=label_levels, duplicates='drop')
     gain_df = pd.DataFrame({'true': y_true, 'predict': y_pred, 'level': level})
     gain_df = (
         gain_df

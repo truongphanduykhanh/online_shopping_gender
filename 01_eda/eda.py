@@ -1,7 +1,7 @@
-"""Provides end-to-end flow to use machine learning models.
+"""Provides common functions to Exploratory Data Analysis.
 """
 __author__ = 'khanhtpd'
-__date__ = '2021-12-01'
+__date__ = '2022-01-01'
 
 
 import math
