@@ -7,7 +7,7 @@ import seaborn as sns
 sns.set()
 
 
-class ShoppingPreprocessing:
+class ShoppingFeatureEngineering:
 
     def __init__(self):
         self.raw = None
@@ -102,7 +102,7 @@ class ShoppingPreprocessing:
         Returns:
             list: productid to be kept.
         """
-        product_df = ShoppingPreprocessing.transform_product(data)
+        product_df = ShoppingFeatureEngineering.transform_product(data)
         session_count = product_df.groupby(level).sessionid.nunique()
         product_keep = session_count.loc[lambda x: x > 100].index.to_list()
         product_consider = session_count.loc[lambda x: (x >= 10) & (x <= 100)].index.to_list()
@@ -122,9 +122,9 @@ class ShoppingPreprocessing:
         return product_keep
 
     def gen_feat_product(self):
-        product_df = ShoppingPreprocessing.transform_product(self.raw)
+        product_df = ShoppingFeatureEngineering.transform_product(self.raw)
         for level in ['level0', 'level1', 'level2', 'level3']:
-            product_keep = ShoppingPreprocessing.keep_product(self.raw, level)
+            product_keep = ShoppingFeatureEngineering.keep_product(self.raw, level)
             product_df[level].loc[lambda x: ~x.isin(product_keep)] = np.nan
 
         product_df = product_df.set_index('sessionid')
@@ -145,12 +145,12 @@ class ShoppingPreprocessing:
 
 if __name__ == '__main__':
 
-    shopping_preprocessing = ShoppingPreprocessing()
-    shopping_preprocessing.load_raw(
+    shopping_fe = ShoppingFeatureEngineering()
+    shopping_fe.load_raw(
         feature_path='../00_raw/trainingData.csv',
         label_path='../00_raw/trainingLabels.csv')
-    shopping_preprocessing.encode_label()
-    shopping_preprocessing.gen_feat_time()
-    shopping_preprocessing.gen_feat_product()
-    data = shopping_preprocessing.gen_data()
+    shopping_fe.encode_label()
+    shopping_fe.gen_feat_time()
+    shopping_fe.gen_feat_product()
+    data = shopping_fe.gen_data()
     data.to_csv('data.csv')

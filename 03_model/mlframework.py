@@ -144,7 +144,7 @@ class MLFramework:
             float: AUC score on validation data set.
         """
         params = {
-            'objective': 'binary',  # binary log loss classification
+            'objective': 'binary',  # loss function to optimize
             'metric': 'custom',  # metric to be evaluated on the evaluation set for early stopping
             'learning_rate': 0.1,  # should not be turned
             'boosting_type': 'gbdt',  # early stopping is not available in dart mode
@@ -171,7 +171,7 @@ class MLFramework:
         return accuracy
 
     def optuna_lgb(self, n_trials=100):
-        sampler = optuna.samplers.TPESampler(seed=0)
+        sampler = optuna.samplers.TPESampler(seed=1)
         study = optuna.create_study(direction='maximize', sampler=sampler)
         study.optimize(
             lambda trial: MLFramework._objective_lgb(trial, self.train),
