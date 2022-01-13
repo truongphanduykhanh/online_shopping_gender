@@ -1,6 +1,6 @@
 # Online Shopping Gender
 
-A project predicting the gender of online customers.
+A project predicting the gender of online customers. Video presentation is [here](https://youtu.be/Rjq0DbgHNgs) (Vietnamese).
 
 ## Table of content
 ### [00_raw](https://github.com/truongphanduykhanh/online_shopping_gender/tree/main/00_raw)

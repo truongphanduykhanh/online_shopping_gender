@@ -80,7 +80,7 @@ def top_missing_columns(data: pd.DataFrame, ntop: int = 10, figsize: Union[tuple
     Args:
         data (pd.DataFrame): Input data frame.
         ntop (int, optional): Number of top missing columns displayed. Defaults to 10.
-        figsize (Union[tuple[int], str], optional): Size of the whole plot. If 'auto',
+        figsize (Union[tuple, str], optional): Size of the whole plot. If 'auto',
             figsize = (12, ntop / 2). Defaults to 'auto'.
     """
     if ntop == 'all':
@@ -103,11 +103,11 @@ def top_missing_columns(data: pd.DataFrame, ntop: int = 10, figsize: Union[tuple
 
 def displot(
     data: pd.DataFrame,
-    columns: list[str] = None,
+    columns: list = None,
     kind: str = 'hist',
     nrows: Union[int, str] = 'auto',
     ncols: int = 2,
-    figsize: Union[tuple[int], str] = 'auto',
+    figsize: Union[tuple, str] = 'auto',
     hspace: float = 0.7,
     wspace: float = 0.5,
     title: str = 'Distribution of numerical variables',
@@ -117,13 +117,13 @@ def displot(
 
     Args:
         data (pd.DataFrame): Input data frame.
-        columns (list[str], optional): Names of numerical columns in the data frame.
+        columns (list, optional): Names of numerical columns in the data frame.
             If None, numerical columns will be taken. Defaults to None.
         kind (str, optional): Kind of plot. Defaults to 'hist'.
         nrows (Union[int, str], optional): Number of rows in the plot.
             If 'auto', will be automatically calulated based on ncols. Defaults to 'auto'.
         ncols (int, optional): Number of columns in the plot. Defaults to 2.
-        figsize (Union[tuple[int], str], optional): Size of the whole plot. If 'auto',
+        figsize (Union[tuple, str], optional): Size of the whole plot. If 'auto',
             figsize = (12, 2 * nrows). Defaults to 'auto'.
         hspace (float, optional): Height space between sup plots. Defaults to 0.7.
         wspace (float, optional): Width space between sup plots. Defaults to 0.5.
@@ -152,11 +152,11 @@ def displot(
 
 def boxplot(
     data: pd.DataFrame,
-    columns: list[str] = None,
+    columns: list = None,
     label: str = None,
     nrows: Union[int, str] = 'auto',
     ncols: int = 2,
-    figsize: Union[tuple[int], str] = 'auto',
+    figsize: Union[tuple, str] = 'auto',
     hspace: float = 0.7,
     wspace: float = 0.5,
     y_title: float = 1,
@@ -166,13 +166,13 @@ def boxplot(
 
     Args:
         data (pd.DataFrame): Input data frame.
-        columns (list[str], optional): Names of numerical columns in the data frame.
+        columns (list, optional): Names of numerical columns in the data frame.
             If None, numerical columns will be taken. Defaults to None.
         label (str, optional): Name of column label in the data frame. Defaults to None.
         nrows (Union[int, str], optional): Number of rows in the plot.
             If 'auto', will be automatically calulated based on ncols. Defaults to 'auto'.
         ncols (int, optional): Number of columns in the plot. Defaults to 2.
-        figsize (Union[tuple[int], str], optional): Size of the whole plot. If 'auto',
+        figsize (Union[tuple, str], optional): Size of the whole plot. If 'auto',
             figsize = (12, 2 * nrows). Defaults to 'auto'.
         hspace (float, optional): Height space between sup plots. Defaults to 0.7.
         wspace (float, optional): Width space between sup plots. Defaults to 0.5.
@@ -201,12 +201,12 @@ def boxplot(
 
 def countplot(
     data: pd.DataFrame,
-    columns: list[str] = None,
+    columns: list = None,
     label: str = None,
     nclass: Union[int, str] = 5,
     nrows: Union[int, str] = 'auto',
     ncols: int = 2,
-    figsize: Union[tuple[int], str] = 'auto',
+    figsize: Union[tuple, str] = 'auto',
     sort_index: bool = False,
     sample: int = 10**6,
     hspace: float = 0.7,
@@ -218,7 +218,7 @@ def countplot(
 
     Args:
         data (pd.DataFrame): Input data frame.
-        columns (list[str], optional): Name of categorical columns in the data frame. If None,
+        columns (list, optional): Name of categorical columns in the data frame. If None,
             categorical and string columns will be taken. Defaults to None.
         label (str, optional):  Name of label column in the data frame. Defaults to None.
         nclass (Union[int, str], optional): Number of class displayed in the plot.
@@ -226,7 +226,7 @@ def countplot(
         nrows (Union[int, str], optional): Number of rows in the plot.
             If 'auto', will be automatically calulated based on ncols. Defaults to 'auto'.
         ncols (int, optional): Number of columns in the plot. Defaults to 2.
-        figsize (Union[tuple[int], str], optional): Size of the whole plot. If 'auto',
+        figsize (Union[tuple, str], optional): Size of the whole plot. If 'auto',
             figsize = (12, 2 * nrows). Defaults to 'auto'.
         sort_index (bool, optional): Sort by index. Defaults to False.
         sample (int, optional): Number of drown samples if the dataset is too large.
@@ -325,7 +325,7 @@ def correlation_matrix(data: pd.DataFrame, figsize: tuple = (7, 7)):
 
 def categorical_to_numeric(
     data: pd.DataFrame,
-    features: Union[str, list[str]],
+    features: Union[str, list],
     label: str = None,
     method: str = 'target',
     drop_first: bool = False,
@@ -335,7 +335,7 @@ def categorical_to_numeric(
 
     Args:
         data (pd.DataFrame): Input data frame.
-        features (Union[str, list[str]]): Names of categorical features.
+        features (Union[str, list]): Names of categorical features.
         label (str, optional): Name of label column, must be specified if method='label'.
             Defaults to None.
         method (str, optional): Method to convert categorical to numeric. Defaults to 'target'.
